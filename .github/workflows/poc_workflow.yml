@@ -62,6 +62,7 @@ jobs:
           # MLFLOW_TRACKING_URI: ${{ secrets.MLFLOW_TRACKING_URI }} # Optional: If using remote MLflow
           GITHUB_BASE_REF: ${{ github.base_ref || github.ref_name }} # Pass target branch info
         run: |
+          ls
           . venv/bin/activate
           python run_doc.py
 

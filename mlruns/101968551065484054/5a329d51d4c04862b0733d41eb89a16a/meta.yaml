@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/101968551065484054/5a329d51d4c04862b0733d41eb89a16a/artifacts
+end_time: 1743603718772
+entry_point_name: ''
+experiment_id: '101968551065484054'
+lifecycle_stage: active
+run_id: 5a329d51d4c04862b0733d41eb89a16a
+run_name: gentle-stork-262
+run_uuid: 5a329d51d4c04862b0733d41eb89a16a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1743603691626
+status: 3
+tags: []
+user_id: mitchellsotto

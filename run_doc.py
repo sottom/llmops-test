@@ -91,3 +91,4 @@ if __name__ == "__main__":
             raise e
         finally:
             logging.info(f"MLflow Run {run_id} finished.")
+            PullRequestAgent.return_to_main()

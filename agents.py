@@ -61,6 +61,12 @@ Do not include any explanations, introductions, or markdown formatting like ```p
 
 
 class PullRequestAgent:
+    @staticmethod
+    def return_to_main(self):
+        """Returns the user to the main branch"""
+        main_branch = os.getenv("GITHUB_BASE_REF", "main") # Or your main branch name
+        subprocess.run(["git", "checkout", main_branch], check=False)
+
     def create_pr(self, file_path, improved_code, branch_name="auto-refactor-suggestions"):
         """Creates a new branch, commits changes, and opens a GitHub PR."""
         try:

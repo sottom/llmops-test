@@ -1,0 +1,64 @@
+name: LLMOps PoC - Auto Refactor
+
+on:
+  push:
+    branches:
+      - main # Or the branch you want to trigger on
+    paths:
+      - 'sample_code/**' # Trigger only if code in sample_code changes
+      - '.github/workflows/poc_workflow.yml' # Or trigger on workflow changes
+      # Add other relevant paths if needed
+
+jobs:
+  refactor_and_pr:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Needed to write commits and push branches
+      pull-requests: write # Needed for gh pr create
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetches all history, needed for git branching/diffing
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10' # Choose your Python version
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Install GitHub CLI
+        run: |
+          type -p curl >/dev/null || sudo apt-get update && sudo apt-get install curl -y
+          curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
+          && sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
+          && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+          && sudo apt-get update \
+          && sudo apt-get install gh -y
+
+      - name: Configure Git User
+        run: |
+          git config --global user.name 'GitHub Actions Bot'
+          git config --global user.email 'actions-bot@users.noreply.github.com'
+
+      - name: Run PoC Script
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub Actions automatically provides this
+          # MLFLOW_TRACKING_URI: ${{ secrets.MLFLOW_TRACKING_URI }} # Optional: If using remote MLflow
+          GITHUB_BASE_REF: ${{ github.base_ref || github.ref_name }} # Pass target branch info
+        run: |
+          python run_poc.py
+
+      # Optional: Upload MLflow run artifacts if running locally
+      # Note: MLflow logs locally to mlruns within the runner by default
+      # - name: Upload MLflow Results
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: mlflow-run-data
+      #     path: mlruns/

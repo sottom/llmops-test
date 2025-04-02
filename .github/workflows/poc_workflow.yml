@@ -46,6 +46,10 @@ jobs:
           git config --global user.name 'GitHub Actions Bot'
           git config --global user.email 'actions-bot@users.noreply.github.com'
 
+      - name: filesystem1
+        run: |
+          ls /home/runner/work/llmops-test/llmops-test/
+
       - name: filesystem
         run: |
           cd /home/runner/work/llmops-test/llmops-test/
@@ -57,6 +61,7 @@ jobs:
           # MLFLOW_TRACKING_URI: ${{ secrets.MLFLOW_TRACKING_URI }} # Optional: If using remote MLflow
           GITHUB_BASE_REF: ${{ github.base_ref || github.ref_name }} # Pass target branch info
         run: |
+          ls
           python run_poc.py
 
       # Optional: Upload MLflow run artifacts if running locally

@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/879585696363866442/005f89c3b6fc46a8994ea44fe582bc89/artifacts
+end_time: 1743604976835
+entry_point_name: ''
+experiment_id: '879585696363866442'
+lifecycle_stage: active
+run_id: 005f89c3b6fc46a8994ea44fe582bc89
+run_name: thundering-crab-487
+run_uuid: 005f89c3b6fc46a8994ea44fe582bc89
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1743604966539
+status: 3
+tags: []
+user_id: mitchellsotto

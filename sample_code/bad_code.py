@@ -10,6 +10,6 @@ def processData(input_list):
     # No type hints, unclear variable names sometimes
     return total
 
-my_list = [1, 6, 3, 8, 5, 10, 11]
+my_list = [1, 6, 3, 8, 5, 10, 11, 15]
 result = processData(my_list)
 # print("Result:", result) # No clear output indication

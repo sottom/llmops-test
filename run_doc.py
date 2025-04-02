@@ -14,7 +14,7 @@ print(TARGET_FILE_PATH)
 
 # --- MLflow Setup ---
 # By default, MLflow logs to a local ./mlruns directory
-mlflow.set_tracking_uri("http://localhost:8080") # Optional: if using a remote MLflow server
+# mlflow.set_tracking_uri("http://localhost:8080") # Optional: if using a remote MLflow server
 mlflow.set_experiment("Code Refactoring PoC")
 
 # --- Main Execution Logic ---

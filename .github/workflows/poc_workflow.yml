@@ -6,7 +6,7 @@ on:
       - feature/* # Or the branch you want to trigger on
     paths:
       - 'sample_code/**' # Trigger only if code in sample_code changes
-      # - '.github/workflows/poc_workflow.yml' # Or trigger on workflow changes
+      - '.github/workflows/poc_workflow.yml' # Or trigger on workflow changes
       # Add other relevant paths if needed
 
 jobs:

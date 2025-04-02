@@ -42,7 +42,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Install GitHub CLI
-        uses: actions/setup-gh-cli@v1
+        uses: actions4gh/setup-gh@v1
 
       - name: Configure Git User
         run: |
